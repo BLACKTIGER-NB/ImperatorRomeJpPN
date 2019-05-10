@@ -195,7 +195,7 @@ def main():
 
     # .modファイルを作成する
     generate_dot_mod_file(
-        mod_title_name="Japanese Language Mod",
+        mod_title_name="Japanese Language Mod Sub",
         mod_dir_name=mod_file_name,
         mod_tags={"Translation", "Localisation"},
         mod_image_file_path="title.jpg",
