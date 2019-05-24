@@ -208,7 +208,7 @@ def main():
     from datetime import datetime as dt
     cdn_url, mod_pack_file_path = upload_mod_to_s3(
         upload_dir_path=out_dir_path,
-        name=dt.now().strftime('%Y-%m-%d_%H-%M-%S-{}.zip'.format("ir-ap1")),
+        name=dt.now().strftime('%Y-%m-%d_%H-%M-%S-{}.zip'.format("ir-ap2")),
         bucket_name="triela-file",
         access_key=os.environ.get("AWS_S3_ACCESS_KEY"),
         secret_access_key=os.environ.get("AWS_S3_SECRET_ACCESS_KEY"),
