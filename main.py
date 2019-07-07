@@ -51,7 +51,8 @@ def assembly_mod(mod_file_name,
     # TODO パス修正する
     ext_paratranz_sub_dir_path = _(".", "tmp", "paratranz_ext_sub")
     mod_dir_path = _(out_dir_path, mod_file_name)
-    mod_loc_dir_path = _(mod_dir_path, "localization", "replace")
+    mod_loc_root_dir_path = _(mod_dir_path, "localization")
+    mod_loc_replace_english_dir_path = _(mod_loc_root_dir_path, "replace", "english")
 
     # 初期化（AzureDevでは必要ない）
     if os.path.exists(ext_paratranz_sub_dir_path):
@@ -59,7 +60,8 @@ def assembly_mod(mod_file_name,
     if os.path.exists(mod_dir_path):
         shutil.rmtree(mod_dir_path)
     os.makedirs(mod_dir_path, exist_ok=True)
-    os.makedirs(mod_loc_dir_path, exist_ok=True)
+    os.makedirs(mod_loc_root_dir_path, exist_ok=True)
+    os.makedirs(mod_loc_replace_english_dir_path, exist_ok=True)
 
     # zip展開する
     with zipfile.ZipFile(resource_paratranz_sub_zip_file_path) as existing_zip:
@@ -70,10 +72,21 @@ def assembly_mod(mod_file_name,
 
     # gameを移す
     shutil.copytree(src=_(ext_paratranz_sub_dir_path, "utf8", "game", "localization", "english"),
-                    dst=_(mod_loc_dir_path, "english"),
-                    ignore=shutil.ignore_patterns("god_names_l_english.yml",
-                                                  "wonders_l_english.yml"
-                                                  ))
+                    dst=_(mod_loc_root_dir_path, "english"),
+                    ignore=shutil.ignore_patterns("cultures_l_english.yml",
+                                                  "decisions_l_english.yml",
+                                                  "nation_formation_l_english.yml"))
+
+    # 例外ファイル
+    shutil.move(_(ext_paratranz_sub_dir_path,
+                  "utf8", "game", "localization", "english", "cultures_l_english.yml"),
+                _(mod_loc_replace_english_dir_path, "cultures_l_english.yml"))
+    shutil.move(_(ext_paratranz_sub_dir_path,
+                  "utf8", "game", "localization", "english", "decisions_l_english.yml"),
+                _(mod_loc_replace_english_dir_path, "decisions_l_english.yml"))
+    shutil.move(_(ext_paratranz_sub_dir_path,
+                  "utf8", "game", "localization", "english", "nation_formation_l_english.yml"),
+                _(mod_loc_replace_english_dir_path, "nation_formation_l_english.yml"))
 
     return mod_dir_path
 
@@ -199,7 +212,7 @@ def main():
         mod_dir_name=mod_file_name,
         mod_tags={"Translation", "Localisation"},
         mod_image_file_path="title.jpg",
-        mod_supported_version="1.0.*",
+        mod_supported_version="1.1.*",
         out_dir_path=out_dir_path)
 
     print("generate .mod file")
