@@ -75,7 +75,9 @@ def assembly_mod(mod_file_name,
                     dst=_(mod_loc_root_dir_path, "english"),
                     ignore=shutil.ignore_patterns("cultures_l_english.yml",
                                                   "decisions_l_english.yml",
-                                                  "nation_formation_l_english.yml"))
+                                                  "nation_formation_l_english.yml",
+                                                  "additional_place_l_english.yml",
+                                                  "additional_names_l_english.yml"))
 
     # 例外ファイル
     shutil.move(_(ext_paratranz_sub_dir_path,
@@ -87,6 +89,12 @@ def assembly_mod(mod_file_name,
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "nation_formation_l_english.yml"),
                 _(mod_loc_replace_english_dir_path, "nation_formation_l_english.yml"))
+    shutil.move(_(ext_paratranz_sub_dir_path,
+                  "utf8", "game", "localization", "english", "additional_place_l_english.yml"),
+                _(mod_loc_replace_english_dir_path, "additional_place_l_english.yml"))
+    shutil.move(_(ext_paratranz_sub_dir_path,
+                  "utf8", "game", "localization", "english", "additional_names_l_english.yml"),
+                _(mod_loc_replace_english_dir_path, "additional_names_l_english.yml"))
 
     return mod_dir_path
 
