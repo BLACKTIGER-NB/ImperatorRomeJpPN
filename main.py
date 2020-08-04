@@ -39,12 +39,14 @@ def download_trans_zip_from_paratranz(project_id,
 
 def assembly_mod(mod_file_name,
                  resource_paratranz_sub_zip_file_path,
-                 out_dir_path):
+                 out_dir_path,
+                 resource_dir):
     """
     Appモッドを作成
     :param mod_file_name: Modファイル名
     :param resource_paratranz_sub_zip_file_path: ParatranzからダウンロードできるSub Mod zipファイルのパス
     :param out_dir_path: 出力フォルダ
+    :param resource_dir: リソースディレクトリ
     :return:
     """
 
@@ -79,22 +81,22 @@ def assembly_mod(mod_file_name,
                                                   "additional_place_l_english.yml",
                                                   "additional_names_l_english.yml"))
 
-    # 例外ファイル
+    # 下に３つはlocalization/replace/englishに入る
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "cultures_l_english.yml"),
                 _(mod_loc_replace_english_dir_path, "cultures_l_english.yml"))
-    shutil.move(_(ext_paratranz_sub_dir_path,
-                  "utf8", "game", "localization", "english", "decisions_l_english.yml"),
-                _(mod_loc_replace_english_dir_path, "decisions_l_english.yml"))
-    shutil.move(_(ext_paratranz_sub_dir_path,
-                  "utf8", "game", "localization", "english", "nation_formation_l_english.yml"),
-                _(mod_loc_replace_english_dir_path, "nation_formation_l_english.yml"))
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "additional_place_l_english.yml"),
                 _(mod_loc_replace_english_dir_path, "additional_place_l_english.yml"))
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "additional_names_l_english.yml"),
                 _(mod_loc_replace_english_dir_path, "additional_names_l_english.yml"))
+
+    # 必要ファイルを配置
+    shutil.copy(_(resource_dir, "thumbnail.png"),
+                _(mod_dir_path, "thumbnail.png"))
+    shutil.copy(_(resource_dir, "descriptor.mod"),
+                _(mod_dir_path, "descriptor.mod"))
 
     return mod_dir_path
 
@@ -189,6 +191,11 @@ def upload_mod_to_s3(upload_dir_path,
     return "{}/{}".format("https://d3fxmsw7mhzbqi.cloudfront.net", name), out_zip_path
 
 
+def update_source(mod_folder_path):
+    shutil.rmtree("source", ignore_errors=True)
+    shutil.copytree(mod_folder_path, _("source"))
+
+
 def main():
     # 一時フォルダ用意
     os.makedirs(_(".", "tmp"), exist_ok=True)
@@ -207,10 +214,11 @@ def main():
     print("p_file_sub_path:{}".format(p_file_sub_path))
 
     # Modを構築する（フォルダのまま）
-    assembly_mod(
+    mod_folder_path = assembly_mod(
         mod_file_name=mod_file_name,
         resource_paratranz_sub_zip_file_path=p_file_sub_path,
-        out_dir_path=out_dir_path)
+        out_dir_path=out_dir_path,
+        resource_dir=_(".", "resource"))
 
     print("mod_dir_path:{}".format(out_dir_path))
 
@@ -220,7 +228,7 @@ def main():
         mod_dir_name=mod_file_name,
         mod_tags={"Translation", "Localisation"},
         mod_image_file_path="title.jpg",
-        mod_supported_version="1.1.*",
+        mod_supported_version="1.4.*",
         out_dir_path=out_dir_path)
 
     print("generate .mod file")
@@ -241,6 +249,9 @@ def main():
     generate_distribution_file(url=cdn_url,
                                out_file_path=_(".", "out", "dist.v2.json"),
                                mod_file_path=mod_pack_file_path)
+
+    # utf8ファイルを移動する（この後git pushする）
+    update_source(mod_folder_path=mod_folder_path)
 
 
 if __name__ == "__main__":
