@@ -2,21 +2,25 @@
 
 This is a Japanese localization pronoun mod for Imperator: Rome.
 
+## Publish Flow
+
+See [Ck3jpmod](https://github.com/matanki-saito/Ck3JpMod)
+
 ## Steam workshop
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=1741691489
+[https://steamcommunity.com/sharedfiles/filedetails/?id=2186940106](https://steamcommunity.com/sharedfiles/filedetails/?id=2186940106)
 
 ## Translation workspace
 
-https://paratranz.cn/projects/350
+[https://paratranz.cn/projects/350](https://paratranz.cn/projects/350)
 
 ## Translation community (Discord channel)
 
-https://discord.gg/9qAd2Ct
+[https://discord.gg/9qAd2Ct](https://discord.gg/9qAd2Ct)
 
 ## Game wiki
 
-https://imperator-rome.wiki/doku.php?id=start
+[https://imperator-rome.wiki/doku.php?id=start](https://imperator-rome.wiki/doku.php?id=start)
 
 ## Paradox Ironman mode
 
@@ -28,14 +32,12 @@ No support
 
 ## Auto update
 
-Yes: Every friday 12:00 (UTC)
+Yes: Every friday 2:00 (UTC)
 
-## Github actions secrets
+## Manual release
 
-| name | description |
-|:---:|:---:|
-| AWS_S3_ACCESS_KEY | Amazon Web Service IAM access key. IAM must have a S3 write access authority|
-| AWS_S3_SECRET_ACCESS_KEY | Amazon Web Service IAM secret key|
-| PARATRANZ_SECRET | Your paratranz personal secret.|
-| STEAM_LOGIN_NAME | Your steam login name. You must have a target game.|
-| STEAM_LOGIN_PASSWORD | Your steam login password.|
+See [Ck3jpmod](https://github.com/matanki-saito/Ck3JpMod)
+
+## How to use auto update program for other project
+
+See [Ck3jpmod](https://github.com/matanki-saito/Ck3JpMod)
