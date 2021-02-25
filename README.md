@@ -8,7 +8,7 @@ See [Ck3jpmod](https://github.com/matanki-saito/Ck3JpMod)
 
 ## Steam workshop
 
-[https://steamcommunity.com/sharedfiles/filedetails/?id=2186940106](https://steamcommunity.com/sharedfiles/filedetails/?id=2186940106)
+[https://steamcommunity.com/sharedfiles/filedetails/?id=2407063698](https://steamcommunity.com/sharedfiles/filedetails/?id=2407063698)
 
 ## Translation workspace
 
