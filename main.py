@@ -156,8 +156,8 @@ def generate_distribution_file(url,
         json.dump(d_new, fw, indent=2, ensure_ascii=False)
 
 def update_source(mod_folder_path):
-    shutil.rmtree("source", ignore_errors=True)
-    shutil.copytree(mod_folder_path, _("source"))
+    shutil.rmtree(_("source","japanese_language_mod_sub"), ignore_errors=True)
+    shutil.copytree(mod_folder_path, _("source", "japanese_language_mod_sub"))
 
 
 def main():
