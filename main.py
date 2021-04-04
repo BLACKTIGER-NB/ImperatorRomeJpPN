@@ -82,7 +82,7 @@ def assembly_mod(mod_file_name,
     # 下に３つはlocalization/replace/englishに入る
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "cultures_l_english.yml"),
-                _(mod_loc_replace_english_dir_path, "cultures_l_english.yml"))
+                _(mod_loc_replace_english_dir_path, "a_cultures_l_english.yml"))
     shutil.move(_(ext_paratranz_sub_dir_path,
                   "utf8", "game", "localization", "english", "additional_place_l_english.yml"),
                 _(mod_loc_replace_english_dir_path, "additional_place_l_english.yml"))
